@@ -7,9 +7,18 @@
             "id": "256f45be-21ed-4868-a29a-d57e9d45aaf3",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Change Button",
                     "type": "Button",
                     "id": "f3d38a3e-b975-48bc-8a13-6fd254d3562b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Toss dice",
+                    "type": "Button",
+                    "id": "6c72c0ca-6ff7-4eda-b1d6-ba67d9358b15",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -19,12 +28,23 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "0a369093-4ac5-4be5-b64c-274afb81e1b1",
-                    "path": "",
+                    "id": "58e62020-077f-4abb-88ad-b88fc02259e3",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Toss dice",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c5d3d64f-0818-435e-bd7c-a0e873991d04",
+                    "path": "<Keyboard>/backquote",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Change Button",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
