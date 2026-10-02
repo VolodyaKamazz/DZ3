@@ -20,12 +20,12 @@ public class OneDiceController : MonoBehaviour
         var position = new Vector3(UnityEngine.Random.Range(-AllDiceController.Torque, AllDiceController.Torque),
                                    UnityEngine.Random.Range(-AllDiceController.Torque, AllDiceController.Torque),
                                    UnityEngine.Random.Range(-AllDiceController.Torque, AllDiceController.Torque));
-        diceRigidbody.AddForceAtPosition(force, position, ForceMode.Impulse);
+        DiceRigidbody.AddForceAtPosition(force, position, ForceMode.Impulse);
     }
 
     public bool IsMoving()
     {
-        var velocity = diceRigidbody.linearVelocity;
+        var velocity = DiceRigidbody.linearVelocity;
         return velocity.x > 0.01f || velocity.y > 0.01f || velocity.z > 0.01f ? true : false;
     }
     

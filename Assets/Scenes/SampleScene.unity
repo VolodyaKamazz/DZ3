@@ -163,7 +163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99ccebf16f75e0347b958387ade2afed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BindsController
-  uiController: {fileID: 0}
   inputActions: {fileID: -944628639613478452, guid: aa97b07dfda8eca4f8297b3d8886416b, type: 3}
 --- !u!1 &83681669
 GameObject:
@@ -281,6 +280,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4981507968374293534, guid: 155b01a0f5ce4204d84f0b42f6c425f2, type: 3}
   m_PrefabInstance: {fileID: 743584468}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &150994715 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1893612517578535185, guid: 155b01a0f5ce4204d84f0b42f6c425f2, type: 3}
+  m_PrefabInstance: {fileID: 743584468}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d9053b56ccb00f43a0b851bf653bbe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DiceController
 --- !u!1 &259783093
 GameObject:
   m_ObjectHideFlags: 0
@@ -1198,6 +1208,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4981507968374293534, guid: 155b01a0f5ce4204d84f0b42f6c425f2, type: 3}
   m_PrefabInstance: {fileID: 611451943}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &936990735 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1893612517578535185, guid: 155b01a0f5ce4204d84f0b42f6c425f2, type: 3}
+  m_PrefabInstance: {fileID: 611451943}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d9053b56ccb00f43a0b851bf653bbe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DiceController
 --- !u!1 &1318523095
 GameObject:
   m_ObjectHideFlags: 0
@@ -1474,6 +1495,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4981507968374293534, guid: 155b01a0f5ce4204d84f0b42f6c425f2, type: 3}
   m_PrefabInstance: {fileID: 493727312}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1456252111 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1893612517578535185, guid: 155b01a0f5ce4204d84f0b42f6c425f2, type: 3}
+  m_PrefabInstance: {fileID: 493727312}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d9053b56ccb00f43a0b851bf653bbe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DiceController
 --- !u!1 &1492761436
 GameObject:
   m_ObjectHideFlags: 0
@@ -1896,6 +1928,10 @@ MonoBehaviour:
   maxForce: 10
   torque: 0.641
   canvas: {fileID: 1646896137}
+  allDice:
+  - {fileID: 1456252111}
+  - {fileID: 150994715}
+  - {fileID: 936990735}
 --- !u!1 &2079356353
 GameObject:
   m_ObjectHideFlags: 0

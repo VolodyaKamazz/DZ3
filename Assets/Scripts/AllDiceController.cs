@@ -8,10 +8,11 @@ public class AllDiceController : MonoBehaviour
     [SerializeField][Min(1)] private int maxForce;
     [SerializeField][Range(0, 1)] private float torque;
     [SerializeField] private UIController canvas;
+    [SerializeField]  private OneDiceController[] allDice;
 
-    private OneDiceController[] allDice;
     private int score;
     private int previousScore;
+    private OneDiceController[] AllDice => allDice;
 
     public int MinForce => minForce;
     public int MaxForce => maxForce;
@@ -21,7 +22,6 @@ public class AllDiceController : MonoBehaviour
     private void Awake()
     {
         previousScore = -1;
-        allDice = GetComponentsInChildren<OneDiceController>();
     }
 
     private void FixedUpdate()
@@ -33,7 +33,7 @@ public class AllDiceController : MonoBehaviour
         }
         if (score != previousScore)
         {
-            foreach (OneDiceController dice in allDice)
+            foreach (OneDiceController dice in AllDice)
             {
                 dice.SetRolledValue();
                 score += dice.RolledValue;
@@ -49,7 +49,7 @@ public class AllDiceController : MonoBehaviour
         {
             return;
         }
-        foreach (OneDiceController dice in allDice)
+        foreach (OneDiceController dice in AllDice)
         {
             dice.Toss();
         }
@@ -57,7 +57,7 @@ public class AllDiceController : MonoBehaviour
 
     public bool IsAtLeastOneDiceMoving() 
     {
-        foreach (OneDiceController dice in allDice)
+        foreach (OneDiceController dice in AllDice)
         {
             if (dice.IsMoving())
             {
