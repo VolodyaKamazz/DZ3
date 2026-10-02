@@ -1,12 +1,14 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class BindsController : MonoBehaviour
 {
     [SerializeField] private InputActionAsset inputActions;
+    [SerializeField] private UIController canvas;
 
     private InputAction action;
+
+    public InputAction Action => action;
 
     private void Awake()
     {
@@ -23,7 +25,7 @@ public class BindsController : MonoBehaviour
               {
                   callback.Dispose();
                   action.Enable();
-                  Debug.Log($"Новая кнопка: {action.bindings[0].effectivePath}");
+                  canvas.UpdateBindedButtonText($"{action.GetBindingDisplayString(0)}");
               })
               .OnCancel(callback =>
               {
