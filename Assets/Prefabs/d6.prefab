@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 450620413222648416}
   - component: {fileID: 1913726959491472752}
-  - component: {fileID: 4662648719487243202}
   m_Layer: 0
   m_Name: Face 4
   m_TagString: Untagged
@@ -28,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 0.72, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4981507968374293534}
@@ -54,20 +53,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0.3, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4662648719487243202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 60806695158572114}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67e614da58b7c364190bbba6105eee5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Assets.FaceController
-  faceValue: 4
-  parentDice: {fileID: 1893612517578535185}
 --- !u!1 &522300360156264768
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,7 +63,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1621216069726909815}
   - component: {fileID: 9175376449884634327}
-  - component: {fileID: 8967992448902018794}
   m_Layer: 0
   m_Name: Face 2
   m_TagString: Untagged
@@ -96,7 +80,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.72, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4981507968374293534}
@@ -122,20 +106,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0.3, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8967992448902018794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 522300360156264768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67e614da58b7c364190bbba6105eee5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Assets.FaceController
-  faceValue: 2
-  parentDice: {fileID: 1893612517578535185}
 --- !u!1 &1038340805300490975
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +122,7 @@ GameObject:
   - component: {fileID: 1893612517578535185}
   m_Layer: 0
   m_Name: d6
-  m_TagString: Untagged
+  m_TagString: Dice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -297,6 +267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DiceController
   diceRigidbody: {fileID: 7969471067238403537}
   scoreController: {fileID: 0}
+  allDiceController: {fileID: 0}
 --- !u!1 &1220653891823568140
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,7 +278,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2844082293068290920}
   - component: {fileID: 8297034347302152266}
-  - component: {fileID: 7356677871654909756}
   m_Layer: 0
   m_Name: Face 5
   m_TagString: Untagged
@@ -325,7 +295,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.72, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4981507968374293534}
@@ -351,20 +321,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0.3, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7356677871654909756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1220653891823568140}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67e614da58b7c364190bbba6105eee5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Assets.FaceController
-  faceValue: 5
-  parentDice: {fileID: 1893612517578535185}
 --- !u!1 &4430933093476482877
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,7 +331,6 @@ GameObject:
   m_Component:
   - component: {fileID: 388107988585756524}
   - component: {fileID: 1817858526238099839}
-  - component: {fileID: 3392929381636364178}
   m_Layer: 0
   m_Name: Face 1
   m_TagString: Untagged
@@ -393,7 +348,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0.72}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4981507968374293534}
@@ -419,20 +374,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0.3, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3392929381636364178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4430933093476482877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67e614da58b7c364190bbba6105eee5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Assets.FaceController
-  faceValue: 1
-  parentDice: {fileID: 1893612517578535185}
 --- !u!1 &6224451192618772831
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,7 +384,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3904467639105121039}
   - component: {fileID: 5940012527652643951}
-  - component: {fileID: 7916438301096037910}
   m_Layer: 0
   m_Name: Face 6
   m_TagString: Untagged
@@ -461,7 +401,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: -0.72}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4981507968374293534}
@@ -487,20 +427,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0.3, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7916438301096037910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6224451192618772831}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67e614da58b7c364190bbba6105eee5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Assets.FaceController
-  faceValue: 6
-  parentDice: {fileID: 1893612517578535185}
 --- !u!1 &9066688143316774589
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,7 +437,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7937019928980134234}
   - component: {fileID: 2737181657839255475}
-  - component: {fileID: 8138520626144171630}
   m_Layer: 0
   m_Name: Face 3
   m_TagString: Untagged
@@ -529,7 +454,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: -0.72, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4981507968374293534}
@@ -555,17 +480,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0.3, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8138520626144171630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9066688143316774589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67e614da58b7c364190bbba6105eee5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Assets.FaceController
-  faceValue: 3
-  parentDice: {fileID: 1893612517578535185}

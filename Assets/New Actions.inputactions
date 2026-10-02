@@ -7,7 +7,7 @@
             "id": "256f45be-21ed-4868-a29a-d57e9d45aaf3",
             "actions": [
                 {
-                    "name": "Change Button",
+                    "name": "ChangeTossButton",
                     "type": "Button",
                     "id": "f3d38a3e-b975-48bc-8a13-6fd254d3562b",
                     "expectedControlType": "",
@@ -16,7 +16,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Toss dice",
+                    "name": "TossButton",
                     "type": "Button",
                     "id": "6c72c0ca-6ff7-4eda-b1d6-ba67d9358b15",
                     "expectedControlType": "",
@@ -33,18 +33,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Toss dice",
+                    "action": "TossButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "c5d3d64f-0818-435e-bd7c-a0e873991d04",
-                    "path": "<Keyboard>/backquote",
+                    "path": "<Keyboard>/anyKey",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Change Button",
+                    "action": "ChangeTossButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
