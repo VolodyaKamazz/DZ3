@@ -1,8 +1,7 @@
 using UnityEngine;
 using System;
-using Unity.VisualScripting;
 
-public class DiceCreation : MonoBehaviour
+public class DiceSpawner : MonoBehaviour
 {
     [SerializeField][Min(0)] private int diceCount;
     [SerializeField][Min(0)] private int radius;
@@ -13,11 +12,13 @@ public class DiceCreation : MonoBehaviour
     public int DiceCount => diceCount;
     public DiceController DicePrefab => dicePrefab;
     public bool IsEvenly => isEvenly;
+    public ScoreController scoreController;
 
     public static event Action OnSomethingChanged;
 
     private void Awake()
     {
+        scoreController = GameObject.Find("ScoreController").GetComponent<ScoreController>();
         CreateDice();
     }
 
@@ -59,11 +60,12 @@ public class DiceCreation : MonoBehaviour
         {
             var x = Radius * Mathf.Cos(radianAngleStep * i);
             var z = Radius * Mathf.Sin(radianAngleStep * i);
-            var localPosition = new Vector3(x, 1, z);
+            var localPosition = new Vector3(x, transform.position.y + 4, z);
             var cube = Instantiate(DicePrefab, transform);
             cube.transform.SetParent(transform);
             cube.transform.localPosition = localPosition;
             cube.transform.name = $"Dice {i}";
+            cube.ScoreController = scoreController;
         }
     }
 

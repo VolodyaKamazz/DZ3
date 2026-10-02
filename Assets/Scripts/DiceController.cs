@@ -1,6 +1,4 @@
 using System;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class DiceController : MonoBehaviour
@@ -9,19 +7,17 @@ public class DiceController : MonoBehaviour
 
     private int rolledValue;
 
+    public ScoreController ScoreController;
     public int RolledValue
     {
-        get { return rolledValue; }
-        private set
-        {
-            rolledValue = Mathf.Clamp(value, 1, 6);
-        }
+        get => rolledValue;
+        private set => rolledValue = Mathf.Clamp(value, 1, 6);
     }
-    public Rigidbody Rigidbody => diceRigidbody;
+    public Rigidbody DiceRigidbody => diceRigidbody;
 
     private void Awake()
     {
-        if (Rigidbody == null)
+        if (DiceRigidbody == null)
         {
             throw new NullReferenceException($"diceRigidbody у {transform.name} не назначен!");
         }
@@ -29,6 +25,7 @@ public class DiceController : MonoBehaviour
 
     public void SetRolledValue(DiceFace face)
     {
+        var previousValue = RolledValue;
         switch (face)
         {
             case DiceFace.One:
@@ -51,5 +48,6 @@ public class DiceController : MonoBehaviour
                 break;
         }
         Debug.Log($"У {transform.name} установлено значние {RolledValue}");
+        ScoreController.AddValueToScore(RolledValue, previousValue);
     }
 }

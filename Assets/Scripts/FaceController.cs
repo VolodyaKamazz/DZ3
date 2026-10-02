@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets
 {
@@ -16,8 +14,8 @@ namespace Assets
         {
             if (other.CompareTag("Table"))
             {
-                ParentDice.SetRolledValue(FaceValue);
                 Debug.Log($"{ParentDice.name} коснулся поверхности гранью номер {FaceValue}");
+                ParentDice.SetRolledValue(FaceValue);
             }
         }
     }
