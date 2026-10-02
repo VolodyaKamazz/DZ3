@@ -1,21 +1,24 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Assets
 {
     public class FaceController : MonoBehaviour
     {
-        [SerializeField][Range(1, 6)] private int faceValue;
+        [SerializeField] private DiceFace faceValue;
+        [SerializeField] private DiceController parentDice;
 
-        public int FaceValue => faceValue;
+        public DiceFace FaceValue => faceValue;
+        public DiceController ParentDice => parentDice;
 
         private void OnTriggerEnter(Collider other)
         {
-            if (!other.CompareTag("Table"))
+            if (other.CompareTag("Table"))
             {
-                return;
+                ParentDice.SetRolledValue(FaceValue);
+                Debug.Log($"{ParentDice.name} коснулся поверхности гранью номер {FaceValue}");
             }
-            Debug.Log($"{transform.parent.name} коснулся поверхности гранью номер {FaceValue}");
         }
     }
 }

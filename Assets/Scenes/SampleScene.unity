@@ -316,8 +316,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.34336728, y: -0.6164572, z: 0.34070894, w: 0.6212865}
+  m_LocalPosition: {x: 4.1332126, y: 9.854489, z: -0.46218854}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -454,7 +454,7 @@ Transform:
   m_GameObject: {fileID: 334672121}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.86693, y: -2.22, z: -0.37203}
+  m_LocalPosition: {x: -1.86693, y: 2.95, z: -0.37203}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -489,9 +489,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ce35a71d08096b4dbe126be33ee3bea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiceCreation
-  diceCount: 5
+  diceCount: 10
   radius: 3
-  isEvenly: 1
+  isEvenly: 0
   dicePrefab: {fileID: 3550376374029052868, guid: 79852811b80b254499b2c2fd449afc66, type: 3}
 --- !u!65 &334672131
 BoxCollider:

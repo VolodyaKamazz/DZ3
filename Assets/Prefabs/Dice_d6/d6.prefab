@@ -52,7 +52,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0, z: 1}
+  m_Size: {x: 1, y: 0.3, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7477334392581279515
 MonoBehaviour:
@@ -67,6 +67,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.FaceController
   faceValue: 1
+  parentDice: {fileID: 3550376374029052868}
 --- !u!1 &136844324619505222
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,7 +120,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0, z: 1}
+  m_Size: {x: 1, y: 0.3, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6950606560220377322
 MonoBehaviour:
@@ -134,6 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.FaceController
   faceValue: 3
+  parentDice: {fileID: 3550376374029052868}
 --- !u!1 &361623008969435391
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,7 +188,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0, z: 1}
+  m_Size: {x: 1, y: 0.3, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2409597814043082805
 MonoBehaviour:
@@ -201,6 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.FaceController
   faceValue: 5
+  parentDice: {fileID: 3550376374029052868}
 --- !u!1 &2930153114591374936
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,7 +256,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0, z: 1}
+  m_Size: {x: 1, y: 0.3, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4143255804962927625
 MonoBehaviour:
@@ -268,6 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.FaceController
   faceValue: 4
+  parentDice: {fileID: 3550376374029052868}
 --- !u!1 &3184550112449914393
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,7 +324,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0, z: 1}
+  m_Size: {x: 1, y: 0.3, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7199425331235573621
 MonoBehaviour:
@@ -335,6 +339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.FaceController
   faceValue: 2
+  parentDice: {fileID: 3550376374029052868}
 --- !u!1 &3386607308649040703
 GameObject:
   m_ObjectHideFlags: 0
@@ -387,7 +392,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0, z: 1}
+  m_Size: {x: 1, y: 0.3, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2859894841982929666
 MonoBehaviour:
@@ -402,6 +407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.FaceController
   faceValue: 6
+  parentDice: {fileID: 3550376374029052868}
 --- !u!1 &4806885605118982568
 GameObject:
   m_ObjectHideFlags: 0
