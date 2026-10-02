@@ -7,7 +7,7 @@ public class AllDiceController : MonoBehaviour
     [SerializeField][Min(0)] private int minForce;
     [SerializeField][Min(1)] private int maxForce;
     [SerializeField][Range(0, 1)] private float torque;
-    [SerializeField] private UI canvas;
+    [SerializeField] private UIController canvas;
 
     private OneDiceController[] allDice;
     private int score;

@@ -266,7 +266,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiceController
   diceRigidbody: {fileID: 7969471067238403537}
-  scoreController: {fileID: 0}
   allDiceController: {fileID: 0}
 --- !u!1 &1220653891823568140
 GameObject:

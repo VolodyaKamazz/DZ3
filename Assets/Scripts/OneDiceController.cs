@@ -12,14 +12,6 @@ public class OneDiceController : MonoBehaviour
     public int RolledValue => rolledValue;
     public Rigidbody DiceRigidbody => diceRigidbody;
 
-    private void Awake()
-    {
-        if (DiceRigidbody == null)
-        {
-            throw new NullReferenceException($"У {transform.name} не назначен diceRigidbody!");
-        }
-    }
-
     public void Toss()
     {
         var force = new Vector3(UnityEngine.Random.Range(-AllDiceController.MaxForce, AllDiceController.MaxForce),
