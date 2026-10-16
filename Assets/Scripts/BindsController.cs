@@ -1,14 +1,16 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class BindsController : MonoBehaviour
 {
     [SerializeField] private InputActionAsset inputActions;
-    [SerializeField] private UIController canvas;
 
     private InputAction action;
 
     public InputAction Action => action;
+
+    public UnityEvent<string> OnButtonChange;
 
     private void Awake()
     {
@@ -25,7 +27,7 @@ public class BindsController : MonoBehaviour
               {
                   callback.Dispose();
                   action.Enable();
-                  canvas.UpdateBindedButtonText($"{action.GetBindingDisplayString(0)}");
+                  OnButtonChange?.Invoke(action.GetBindingDisplayString(0));
               })
               .OnCancel(callback =>
               {

@@ -1,12 +1,12 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class AllDiceController : MonoBehaviour
 {
     [SerializeField][Min(0)] private int minForce;
     [SerializeField][Min(1)] private int maxForce;
     [SerializeField][Range(0, 1)] private float torque;
-    [SerializeField] private UIController canvas;
     [SerializeField]  private OneDiceController[] allDice;
 
     private int score;
@@ -17,6 +17,8 @@ public class AllDiceController : MonoBehaviour
     public int MaxForce => maxForce;
     public float Torque => torque;
     public int Score => score;
+
+    public UnityEvent<int> OnScoreChanged;
 
     private void Awake()
     {
@@ -38,7 +40,7 @@ public class AllDiceController : MonoBehaviour
                 score += dice.RolledValue;
             }
             previousScore = score;
-            canvas.UpdateText(score);
+            OnScoreChanged?.Invoke(score);
         }
     }
 

@@ -9,15 +9,28 @@ public class UIController : MonoBehaviour
     [SerializeField] private TMP_Text bindedButtonText;
     [SerializeField] private Button control;
     [SerializeField] private BindsController bindsController;
+    [SerializeField] private AllDiceController allDiceController;
     
     private void Awake()
     {
         bindedButtonText.text = $"Бросок: {bindsController.Action.GetBindingDisplayString(0)}";
     }
 
-    public void UpdateText(int score)
+    public void UpdateScoreText(int score)
     {
         scoreText.text = $"Количество очков: {score.ToString()}";
+    }
+
+    private void OnEnable()
+    {
+        bindsController.OnButtonChange.AddListener(UpdateBindedButtonText);
+        allDiceController.OnScoreChanged.AddListener(UpdateScoreText);
+    }
+
+    private void OnDisable()
+    {
+        bindsController.OnButtonChange.RemoveListener(UpdateBindedButtonText);
+        allDiceController.OnScoreChanged.RemoveListener(UpdateScoreText);
     }
 
     public void UpdateBindedButtonText(string buttonName)
