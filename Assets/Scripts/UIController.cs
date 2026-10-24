@@ -16,14 +16,14 @@ public class UIController : MonoBehaviour
         bindedButtonText.text = $"Бросок: {bindsController.Action.GetBindingDisplayString(0)}";
     }
 
-    public void UpdateScoreText(int score)
+    public void UpdateScoreText()
     {
-        if (score == 0) 
+        if (allDiceController.Score == 0) 
         {
             scoreText.text = "Количество очков:";
             return;
         }
-        scoreText.text = $"Количество очков: {score.ToString()}";
+        scoreText.text = $"Количество очков: {allDiceController.Score}";
     }
 
     private void OnEnable()

@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,56 +10,68 @@ public class AllDiceController : MonoBehaviour
     [SerializeField][Min(0)] private int minForce;
     [SerializeField][Min(1)] private int maxForce;
     [SerializeField][Range(0, 1)] private float torque;
-    [SerializeField] private OneDiceController[] allDice;
+    [SerializeField] private OneDiceController prefab;
+    [SerializeField] private List<OneDiceController> allDice;
 
     private int score;
-    private int movingDices;
-    private OneDiceController[] AllDice => allDice;
+    private int movingDicesCount;
+    private int diceCount;
+    private Vector3[,] spawnPoints;
+    private bool isCoroutineStarted;
 
+    public List<OneDiceController> AllDice => allDice;
+    public float Torque => torque;
+    public int Score => score;
     public int MinForce => minForce;
     public int MaxForce => maxForce;
-    public float Torque => torque;
-    public int MovingDices
+    public int DiceCount
     {
-        get => movingDices;
+        get => diceCount;
         private set
         {
-            movingDices = value;
+            diceCount = Mathf.Max(value, 1);
+        }
+    }
+    public int MovingDicesCount
+    {
+        get => movingDicesCount;
+        private set
+        {
+            movingDicesCount = value;
             if (value == 0)
             {
                 SetScore();
-                OnScoreChanged?.Invoke(score);
+                OnScoreChanged?.Invoke();
             }
         }
     }
 
-    public UnityEvent<int> OnScoreChanged;
+    public UnityEvent OnScoreChanged;
+
+    private void Awake()
+    {
+        spawnPoints = GetSpawnMatrix();
+        StartCoroutine(SpawnDice(25));
+    }
 
     public void OnTossButton()
     {
-        if (IsAtLeastOneDiceMoving())
+        if (!IsAllSleeping())
         {
             return;
         }
-        MovingDices = AllDice.Count();
+        MovingDicesCount = AllDice.Count;
         score = 0;
-        OnScoreChanged?.Invoke(score);
+        OnScoreChanged?.Invoke();
         foreach (OneDiceController dice in AllDice)
         {
             dice.Toss();
         }
     }
 
-    public bool IsAtLeastOneDiceMoving()
+    public bool IsAllSleeping()
     {
-        foreach (OneDiceController dice in AllDice)
-        {
-            if (dice.IsMoving())
-            {
-                return true;
-            }
-        }
-        return false;
+        return allDice.All(dice => dice.DiceRigidbody.IsSleeping());
     }
 
     private void SetScore()
@@ -69,16 +83,81 @@ public class AllDiceController : MonoBehaviour
         }
     }
 
-    private void ReduceMovingDices()
+    private void ReduceMovingDicesCount()
     {
-        MovingDices -= 1;
+        MovingDicesCount -= 1;
+    }
+
+    private void ChangeDiceCount()
+    {
+        var difference = DiceCount - AllDice.Count;
+        if (difference < 0)
+        {
+            DestroyDice(difference);
+        }
+        else if (difference > 0)
+        {
+            StartCoroutine(SpawnDice(difference));
+        }
+    }
+
+    private void DestroyDice(int timesCount)
+    {
+        while (timesCount != 0)
+        {
+            var lastIndex = allDice.Count - 1;
+            Destroy(allDice[lastIndex].gameObject);
+            allDice.RemoveAt(lastIndex);
+            timesCount--;
+        }
+    }
+
+    private IEnumerator SpawnDice(int diceToSpawnCount)
+    {
+        isCoroutineStarted = true;
+        while (diceToSpawnCount != 0)
+        {
+            yield return new WaitForSeconds(0.1f); //ждем пока предыдущий слой опустится
+            foreach (var pos in spawnPoints)
+            {
+                var dice = Instantiate(prefab, transform);
+                dice.transform.position = pos;
+                
+                allDice.Add(dice);
+                diceToSpawnCount--;
+                if (diceToSpawnCount == 0)
+                {
+                    break;
+                }
+            }
+        }
+        yield return new WaitForSeconds(2f); //ждем пока последний слой долетит
+        isCoroutineStarted = false;
+    }
+
+    private Vector3[,] GetSpawnMatrix()
+    {
+        var rowCount = 5;
+        var spawnPoints = new Vector3[rowCount, rowCount];
+        var x = transform.position.x;
+        var y = transform.position.y;
+        var z = transform.position.z;
+        var spaceBeetweenPoints = 2f;
+        for (var i = 0; i < rowCount; i++)
+        {
+            for (var j = 0; j < rowCount; j++)
+            {
+                spawnPoints[i, j] = new Vector3(x + spaceBeetweenPoints * i, y, z + spaceBeetweenPoints * j);
+            }
+        }
+        return spawnPoints;
     }
 
     private void OnEnable()
     {
         foreach (var dice in AllDice)
         {
-            dice.OnDiceLand.AddListener(ReduceMovingDices);
+            dice.OnDiceLand.AddListener(ReduceMovingDicesCount);
         }
     }
 
@@ -86,7 +165,7 @@ public class AllDiceController : MonoBehaviour
     {
         foreach (var dice in AllDice)
         {
-            dice.OnDiceLand.RemoveListener(ReduceMovingDices);
+            dice.OnDiceLand.RemoveListener(ReduceMovingDicesCount);
         }
     }
 }

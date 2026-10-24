@@ -30,7 +30,8 @@ public class OneDiceController : MonoBehaviour
     public bool IsMoving()
     {
         var velocity = DiceRigidbody.linearVelocity;
-        return velocity.x > 0.01f || velocity.y > 0.01f || velocity.z > 0.01f ? true : false;
+        //return velocity.x > 0.01f || velocity.y > 0.01f || velocity.z > 0.01f ? true : false;
+        return diceRigidbody.IsSleeping();
     }
 
     public void SetRolledValue()
@@ -63,10 +64,10 @@ public class OneDiceController : MonoBehaviour
         {
             return;
         }
-        StartCoroutine(WaitUntilStopped());
+        StartCoroutine(WaitUntilDiceStopRolling());
     }
 
-    private IEnumerator WaitUntilStopped()
+    private IEnumerator WaitUntilDiceStopRolling()
     {
         isCoroutineStarted = true;
         while (!DiceRigidbody.IsSleeping())
