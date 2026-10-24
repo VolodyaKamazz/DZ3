@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,42 +8,30 @@ public class AllDiceController : MonoBehaviour
     [SerializeField][Min(0)] private int minForce;
     [SerializeField][Min(1)] private int maxForce;
     [SerializeField][Range(0, 1)] private float torque;
-    [SerializeField]  private OneDiceController[] allDice;
+    [SerializeField] private OneDiceController[] allDice;
 
     private int score;
-    private int previousScore;
+    private int movingDices;
     private OneDiceController[] AllDice => allDice;
 
     public int MinForce => minForce;
     public int MaxForce => maxForce;
     public float Torque => torque;
-    public int Score => score;
+    public int MovingDices
+    {
+        get => movingDices;
+        private set
+        {
+            movingDices = value;
+            if (value == 0)
+            {
+                SetScore();
+                OnScoreChanged?.Invoke(score);
+            }
+        }
+    }
 
     public UnityEvent<int> OnScoreChanged;
-
-    private void Awake()
-    {
-        previousScore = -1;
-    }
-
-    private void FixedUpdate()
-    {
-        if (IsAtLeastOneDiceMoving())
-        {
-            score = 0;
-            return;
-        }
-        if (score != previousScore)
-        {
-            foreach (OneDiceController dice in AllDice)
-            {
-                dice.SetRolledValue();
-                score += dice.RolledValue;
-            }
-            previousScore = score;
-            OnScoreChanged?.Invoke(score);
-        }
-    }
 
     public void OnTossButton()
     {
@@ -50,13 +39,16 @@ public class AllDiceController : MonoBehaviour
         {
             return;
         }
+        MovingDices = AllDice.Count();
+        score = 0;
+        OnScoreChanged?.Invoke(score);
         foreach (OneDiceController dice in AllDice)
         {
             dice.Toss();
         }
     }
 
-    public bool IsAtLeastOneDiceMoving() 
+    public bool IsAtLeastOneDiceMoving()
     {
         foreach (OneDiceController dice in AllDice)
         {
@@ -66,5 +58,35 @@ public class AllDiceController : MonoBehaviour
             }
         }
         return false;
+    }
+
+    private void SetScore()
+    {
+        foreach (var dice in AllDice)
+        {
+            dice.SetRolledValue();
+            score += dice.RolledValue;
+        }
+    }
+
+    private void ReduceMovingDices()
+    {
+        MovingDices -= 1;
+    }
+
+    private void OnEnable()
+    {
+        foreach (var dice in AllDice)
+        {
+            dice.OnDiceLand.AddListener(ReduceMovingDices);
+        }
+    }
+
+    private void OnDisable()
+    {
+        foreach (var dice in AllDice)
+        {
+            dice.OnDiceLand.RemoveListener(ReduceMovingDices);
+        }
     }
 }

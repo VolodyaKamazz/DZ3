@@ -19,7 +19,6 @@ public class BindsController : MonoBehaviour
 
     public void RebindButton()
     {
-        Debug.Log("Нажмите кнопку, на которую хотите назначить действие");
         action.Disable();
         action.PerformInteractiveRebinding(0)
               .WithCancelingThrough("<Keyboard>/escape")
@@ -33,7 +32,6 @@ public class BindsController : MonoBehaviour
               {
                   callback.Dispose();
                   action.Enable();
-                  Debug.Log("Назначение отменено");
               })
               .Start();
     }

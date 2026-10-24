@@ -18,6 +18,11 @@ public class UIController : MonoBehaviour
 
     public void UpdateScoreText(int score)
     {
+        if (score == 0) 
+        {
+            scoreText.text = "Количество очков:";
+            return;
+        }
         scoreText.text = $"Количество очков: {score.ToString()}";
     }
 

@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class OneDiceController : MonoBehaviour
 {
@@ -6,10 +8,13 @@ public class OneDiceController : MonoBehaviour
     [SerializeField] AllDiceController allDiceController;
 
     private int rolledValue;
+    private bool isCoroutineStarted;
 
     public AllDiceController AllDiceController => allDiceController;
     public int RolledValue => rolledValue;
     public Rigidbody DiceRigidbody => diceRigidbody;
+
+    public UnityEvent OnDiceLand;
 
     public void Toss()
     {
@@ -27,7 +32,7 @@ public class OneDiceController : MonoBehaviour
         var velocity = DiceRigidbody.linearVelocity;
         return velocity.x > 0.01f || velocity.y > 0.01f || velocity.z > 0.01f ? true : false;
     }
-    
+
     public void SetRolledValue()
     {
         var maxY = -1f;
@@ -50,5 +55,25 @@ public class OneDiceController : MonoBehaviour
             "Face 6" => 6,
             _ => 0
         };
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (isCoroutineStarted || collision.transform.tag != "Table")
+        {
+            return;
+        }
+        StartCoroutine(WaitUntilStopped());
+    }
+
+    private IEnumerator WaitUntilStopped()
+    {
+        isCoroutineStarted = true;
+        while (!DiceRigidbody.IsSleeping())
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+        OnDiceLand?.Invoke();
+        isCoroutineStarted = false;
     }
 }
