@@ -57,8 +57,8 @@ public class OneDiceController : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collision)
-    {   
-        if (isCoroutineStarted || !(collision.transform.tag != "Table" || collision.transform.tag != "Dice"))
+    {
+        if (isCoroutineStarted || (!collision.transform.CompareTag("Table") && !collision.transform.CompareTag("Dice")))
         {
             return;
         }
