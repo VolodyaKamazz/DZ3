@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Table
   - Dice
+  - Wall
   layers:
   - Default
   - TransparentFX

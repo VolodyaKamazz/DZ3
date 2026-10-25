@@ -7,23 +7,28 @@ using UnityEngine.Events;
 
 public class AllDiceController : MonoBehaviour
 {
-    [SerializeField][Min(0)] private int minForce;
-    [SerializeField][Min(1)] private int maxForce;
-    [SerializeField][Range(0, 1)] private float torque;
+    [SerializeField] private int minForce;
+    [SerializeField] private int maxForce;
+    [SerializeField] private float torque;
     [SerializeField] private OneDiceController prefab;
     [SerializeField] private List<OneDiceController> allDice;
 
     private int score;
     private int movingDicesCount;
     private int diceCount;
+    private int winPoints;
+    private int drawPoints;
+    private int maxScore;
     private Vector3[,] spawnPoints;
-    private bool isCoroutineStarted;
+    private bool isSpawnCoroutineStarted;
 
     public List<OneDiceController> AllDice => allDice;
     public float Torque => torque;
     public int Score => score;
     public int MinForce => minForce;
     public int MaxForce => maxForce;
+    public int WinPoints => winPoints;
+    public int DrawPoints => drawPoints;
     public int DiceCount
     {
         get => diceCount;
@@ -47,11 +52,15 @@ public class AllDiceController : MonoBehaviour
     }
 
     public UnityEvent OnScoreChanged;
+    public UnityEvent OnDiceCountChange;
 
     private void Awake()
     {
         spawnPoints = GetSpawnMatrix();
-        StartCoroutine(SpawnDice(25));
+        DiceCount = 25;
+        StartCoroutine(SpawnDice(DiceCount));
+        OnScoreChanged?.Invoke();
+        OnDiceCountChange?.Invoke();
     }
 
     public void OnTossButton()
@@ -88,12 +97,15 @@ public class AllDiceController : MonoBehaviour
         MovingDicesCount -= 1;
     }
 
-    private void ChangeDiceCount()
+    public void SetDiceCount(int neededCount)
     {
+        DiceCount = neededCount;
+        OnDiceCountChange?.Invoke();
         var difference = DiceCount - AllDice.Count;
+        maxScore = DiceCount * 6;
         if (difference < 0)
         {
-            DestroyDice(difference);
+            DestroyDice(-difference);
         }
         else if (difference > 0)
         {
@@ -101,12 +113,20 @@ public class AllDiceController : MonoBehaviour
         }
     }
 
+    public void SetWinPoints()
+    {
+
+    }
+
     private void DestroyDice(int timesCount)
     {
         while (timesCount != 0)
         {
+
             var lastIndex = allDice.Count - 1;
-            Destroy(allDice[lastIndex].gameObject);
+            var dice = allDice[lastIndex];
+            dice.OnDiceLand.RemoveListener(ReduceMovingDicesCount);
+            Destroy(dice.gameObject);
             allDice.RemoveAt(lastIndex);
             timesCount--;
         }
@@ -114,15 +134,16 @@ public class AllDiceController : MonoBehaviour
 
     private IEnumerator SpawnDice(int diceToSpawnCount)
     {
-        isCoroutineStarted = true;
+        isSpawnCoroutineStarted = true;
         while (diceToSpawnCount != 0)
         {
             yield return new WaitForSeconds(0.1f); //ждем пока предыдущий слой опустится
             foreach (var pos in spawnPoints)
             {
                 var dice = Instantiate(prefab, transform);
+                dice.SetAllDiceController(this);
+                dice.OnDiceLand.AddListener(ReduceMovingDicesCount);
                 dice.transform.position = pos;
-                
                 allDice.Add(dice);
                 diceToSpawnCount--;
                 if (diceToSpawnCount == 0)
@@ -132,7 +153,7 @@ public class AllDiceController : MonoBehaviour
             }
         }
         yield return new WaitForSeconds(2f); //ждем пока последний слой долетит
-        isCoroutineStarted = false;
+        isSpawnCoroutineStarted = false;
     }
 
     private Vector3[,] GetSpawnMatrix()
@@ -151,14 +172,6 @@ public class AllDiceController : MonoBehaviour
             }
         }
         return spawnPoints;
-    }
-
-    private void OnEnable()
-    {
-        foreach (var dice in AllDice)
-        {
-            dice.OnDiceLand.AddListener(ReduceMovingDicesCount);
-        }
     }
 
     private void OnDisable()

@@ -5,7 +5,7 @@ using UnityEngine.Events;
 public class OneDiceController : MonoBehaviour
 {
     [SerializeField] private Rigidbody diceRigidbody;
-    [SerializeField] AllDiceController allDiceController;
+    [SerializeField] private AllDiceController allDiceController;
 
     private int rolledValue;
     private bool isCoroutineStarted;
@@ -16,6 +16,11 @@ public class OneDiceController : MonoBehaviour
 
     public UnityEvent OnDiceLand;
 
+    public void SetAllDiceController(AllDiceController controller)
+    {
+        allDiceController = controller;
+    }
+
     public void Toss()
     {
         var force = new Vector3(UnityEngine.Random.Range(-AllDiceController.MaxForce, AllDiceController.MaxForce),
@@ -25,13 +30,6 @@ public class OneDiceController : MonoBehaviour
                                    UnityEngine.Random.Range(-AllDiceController.Torque, AllDiceController.Torque),
                                    UnityEngine.Random.Range(-AllDiceController.Torque, AllDiceController.Torque));
         DiceRigidbody.AddForceAtPosition(force, position, ForceMode.Impulse);
-    }
-
-    public bool IsMoving()
-    {
-        var velocity = DiceRigidbody.linearVelocity;
-        //return velocity.x > 0.01f || velocity.y > 0.01f || velocity.z > 0.01f ? true : false;
-        return diceRigidbody.IsSleeping();
     }
 
     public void SetRolledValue()
@@ -59,8 +57,8 @@ public class OneDiceController : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collision)
-    {
-        if (isCoroutineStarted || collision.transform.tag != "Table")
+    {   
+        if (isCoroutineStarted || !(collision.transform.tag != "Table" || collision.transform.tag != "Dice"))
         {
             return;
         }
